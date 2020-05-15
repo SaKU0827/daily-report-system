@@ -14,11 +14,11 @@ import javax.persistence.Table;
 @Table(name = "employees")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllEnployees",
+            name = "getAllEmployees",
             query = "SELECT e FROM Employee AS e ORDER BY e.id DESC"
             ),
     @NamedQuery(
-            name = "getEnployeesCount",
+            name = "getEmployeesCount",
             query = "SELECT COUNT(e) FROM Employee AS e"
             ),
     @NamedQuery(
@@ -32,6 +32,7 @@ import javax.persistence.Table;
 })
 @Entity
 public class Employee {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
