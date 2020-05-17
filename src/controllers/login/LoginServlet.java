@@ -21,7 +21,6 @@ public class LoginServlet extends HttpServlet {
 
     public LoginServlet() {
         super();
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +36,6 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Boolean check_result = false;
 
         String code = request.getParameter("code");
@@ -52,7 +50,6 @@ public class LoginServlet extends HttpServlet {
                     plain_pass,
                     (String)this.getServletContext().getAttribute("salt")
                     );
-
 
             try {
                 e = em.createNamedQuery("checkLoginCodeAndPassword", Employee.class)
@@ -69,7 +66,6 @@ public class LoginServlet extends HttpServlet {
         }
 
         if(!check_result) {
-
             request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("hasError", true);
             request.setAttribute("code", code);
@@ -77,7 +73,6 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login/login.jsp");
             rd.forward(request, response);
         } else {
-
             request.getSession().setAttribute("login_employee", e);
 
             request.getSession().setAttribute("flush", "ログインしました。");

@@ -33,7 +33,6 @@ public class LoginFilter implements Filter {
         if(!servlet_path.matches("/css.*")) {
             HttpSession session = ((HttpServletRequest)request).getSession();
 
-
             Employee e = (Employee)session.getAttribute("login_employee");
 
             if(!servlet_path.equals("/login")) {
@@ -42,14 +41,11 @@ public class LoginFilter implements Filter {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/login");
                     return;
                 }
-
-
                 if(servlet_path.matches("/employees.*") && e.getAdmin_flag() == 0) {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
                 }
             } else {
-
                 if(e != null) {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
@@ -61,7 +57,6 @@ public class LoginFilter implements Filter {
     }
 
     public void init(FilterConfig fConfig) throws ServletException {
-
     }
 
 }
